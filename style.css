@@ -68,6 +68,8 @@ input{
     background-color: var(--secondaryBackground);
     border: 1px solid var(--purple);
     border-radius: 10px;
+    outline: none;
+    color: var(--text);
 }
 
 button{
@@ -79,4 +81,7 @@ button{
     justify-content: center;
     background-color: var(--purple);
     color: var(--text);
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
 }
