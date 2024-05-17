@@ -29,12 +29,14 @@ updateTasksList = ()=> {
                     <p>Finish this project</p>
                 </div>
                 <div class="icon">
+                    <img src="./images/edit.png" >
+                    <img src="./images/delet.png" >
                 </div>
             </div>
-            `
+            `;
         }
-    )
-}
+    );
+};
 
 document.getElementById('newTask').addEventListener('click',
 function(e){e.preventDefault()
