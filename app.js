@@ -1,8 +1,8 @@
 let tasks = [];
 
 const addTask = () => {
-    const taskInput = document.getElementById('taskInput')
-    const text = taskInput.value.trim()
+    const taskInput = document.getElementById("taskInput");
+    const text = taskInput.value.trim();
 
     if (text) {
         tasks.push({ text: text, completed: false });
@@ -19,29 +19,30 @@ const updateTasksList = () => {
 
 
     tasks.forEach((task, index) => {
-        const listItem = document.createElement("li")
+        const listItem = document.createElement("li");
 
         listItem.innerHTML = `
             <div class="taskItem">
                 <div class="task ${task.completed ? "completed":""}">
-                    <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""}/>
+                    <input type="checkbox" class="checkbox" ${
+                        task.completed ? "checked" : ""
+                    }/>
                     <p>${task.text}</p>
                 </div>
                 <div class="icons">
-                    <img src="./images/edit.png" onClick = "editTask(${index})">
-                    <img src="./images/delet.png" onClick = "deletTask(${index})">
+                    <img src="./images/edit.png" onClick = "editTask(${index})" />
+                    <img src="./images/delet.png" onClick = "deletTask(${index})" />
                 </div>
             </div>
             `;
 
         listItem.addEventListener("change", () => toggleTaskComplete(index));
-        taskList.appendChild(listItem);
+        taskList.append(listItem);
     });
 };
 
-document.getElementById('newTask').addEventListener('click',
-    function (e) {
-        e.preventDefault()
+document.getElementById("newTask").addEventListener("click",function (e) {
+        e.preventDefault();
         addTask();
     }
-)
+);
