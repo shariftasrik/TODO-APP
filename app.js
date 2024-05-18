@@ -1,31 +1,30 @@
 let tasks = [];
 
-const addTask = ()=> {
+const addTask = () => {
     const taskInput = document.getElementById('taskInput')
     const text = taskInput.value.trim()
 
-    if(text){
-        tasks.push({text:text, completed: false});
+    if (text) {
+        tasks.push({ text: text, completed: false });
 
         updateTasksList();
     }
-    
+
 };
 
 
-updateTasksList = ()=> {
-    const taskList =  document.getElementById('task-list')
+updateTasksList = () => {
+    const taskList = document.getElementById('task-list')
     taskList.innerHTML = ''
 
 
-    tasks.forEach(task =>
-        {
-            const listItem = document.createElement('li')
+    tasks.forEach((task, index) => {
+        const listItem = document.createElement('li')
 
-            listItem.innerHTML = `
+        listItem.innerHTML = `
             <div class="taskItem">
-                <div class="task">
-                    <input type="checkbox" class="checkbox"/>
+                <div class="task ${task.completed ? 'completed':''}">
+                    <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""}/>
                     <p>Finish this project</p>
                 </div>
                 <div class="icon">
@@ -34,12 +33,15 @@ updateTasksList = ()=> {
                 </div>
             </div>
             `;
-        }
-    );
+
+        listItem.addEventListener('change', () => toggleTaskComplete(index));
+        taskList.appendChild(listItem);
+    });
 };
 
 document.getElementById('newTask').addEventListener('click',
-function(e){e.preventDefault()
-    addTask();
-}
+    function (e) {
+        e.preventDefault()
+        addTask();
+    }
 )
