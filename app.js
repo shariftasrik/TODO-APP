@@ -6,12 +6,37 @@ const addTask = () => {
 
     if (text) {
         tasks.push({ text: text, completed: false });
-
+        taskInput.value = "";
         updateTasksList();
     }
 
 };
 
+const toggleTaskComplete = (index) => {
+    tasks[index].completed = !tasks[index].completed;
+    updateTasksList();
+    //console.log({tasks});
+};
+
+const deletTask = (index) => {
+    tasks.splice(index,1);
+    updateTasksList();
+};
+
+const editTask = (index) => {
+    const taskInput = document.getElementById("taskInput");
+    taskInput.value = tasks[index].text;
+
+    tasks.splice(index,1);
+    updateTasksList();
+};
+
+const updateStats = ()=>{
+    const completeTasks = tasks.filter(task => task.completed).length;
+    const totalTasks = tasks.length;
+    const progress = (completeTasks/totalTasks) * 100;
+    const progressBar = document.getElementById
+}
 
 const updateTasksList = () => {
     const taskList = document.getElementById("task-list")
@@ -23,7 +48,7 @@ const updateTasksList = () => {
 
         listItem.innerHTML = `
             <div class="taskItem">
-                <div class="task ${task.completed ? "completed":""}">
+                <div class="task ${task.completed ? "completed" : ""}">
                     <input type="checkbox" class="checkbox" ${
                         task.completed ? "checked" : ""
                     }/>
