@@ -25,11 +25,11 @@ updateTasksList = () => {
             <div class="taskItem">
                 <div class="task ${task.completed ? 'completed':''}">
                     <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""}/>
-                    <p>Finish this project</p>
+                    <p>${task.text}</p>
                 </div>
                 <div class="icon">
-                    <img src="./images/edit.png" >
-                    <img src="./images/delet.png" >
+                    <img src="./images/edit.png" onClick=editTask(${index})>
+                    <img src="./images/delet.png" onClick=deletTask(${index})>
                 </div>
             </div>
             `;
