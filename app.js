@@ -8,6 +8,7 @@ const addTask = () => {
         tasks.push({ text: text, completed: false });
         taskInput.value = "";
         updateTasksList();
+        updateStats();
     }
 
 };
@@ -16,11 +17,14 @@ const toggleTaskComplete = (index) => {
     tasks[index].completed = !tasks[index].completed;
     updateTasksList();
     //console.log({tasks});
+    updateStats();
+
 };
 
-const deletTask = (index) => {
+const deleteTask = (index) => {
     tasks.splice(index,1);
     updateTasksList();
+    updateStats();
 };
 
 const editTask = (index) => {
@@ -29,13 +33,17 @@ const editTask = (index) => {
 
     tasks.splice(index,1);
     updateTasksList();
+    updateStats();
 };
 
-const updateStats = ()=>{
+const updateStats = ()=> {
     const completeTasks = tasks.filter(task => task.completed).length;
     const totalTasks = tasks.length;
-    const progress = (completeTasks/totalTasks) * 100;
-    const progressBar = document.getElementById
+    const progress = (totalTasks === 0) ? 0 : (completeTasks/totalTasks) * 100;
+    const progressBar = document.getElementById("progress");
+
+
+    progressBar.style.width = `${progress}%`;
 }
 
 const updateTasksList = () => {
@@ -55,8 +63,8 @@ const updateTasksList = () => {
                     <p>${task.text}</p>
                 </div>
                 <div class="icons">
-                    <img src="./images/edit.png" onClick = "editTask(${index})" />
-                    <img src="./images/delet.png" onClick = "deletTask(${index})" />
+                    <img src="./images/edit.png" onClick="editTask(${index})" />
+                    <img src="./images/delet.png" onClick="deleteTask(${index})" />
                 </div>
             </div>
             `;
